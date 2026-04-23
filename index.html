@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نقابة لاعبي البيلياردو بالمغرب — خفّضوا الأثمنة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi+Fun:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0E0E0E;
+    --paper: #F4EFE6;
+    --red: oklch(0.55 0.22 25);
+    --red-deep: oklch(0.42 0.20 25);
+    --chalk: oklch(0.85 0.18 90);
+    --rule: rgba(14,14,14,0.15);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); color: var(--ink); font-family: 'Tajawal', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(rgba(14,14,14,0.06) 1px, transparent 1px);
+    background-size: 3px 3px;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: multiply;
+  }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .kufi { font-family: 'Reem Kufi Fun', sans-serif; }
+
+  /* ===== TICKER ===== */
+  .ticker {
+    background: var(--ink);
+    color: var(--paper);
+    border-bottom: 2px solid var(--ink);
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+  }
+  .ticker-track {
+    display: flex;
+    gap: 48px;
+    padding: 10px 0;
+    white-space: nowrap;
+    animation: scroll 60s linear infinite;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+  .ticker-track span { display: inline-flex; align-items: center; gap: 14px; }
+  .ticker-track .dot { width: 8px; height: 8px; background: var(--red); border-radius: 50%; }
+  @keyframes scroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    background: var(--paper);
+    border-bottom: 2px solid var(--ink);
+    padding: 14px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-mark {
+    width: 40px; height: 40px;
+    background: var(--ink);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    color: var(--paper);
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    position: relative;
+    box-shadow: 0 0 0 3px var(--paper), 0 0 0 5px var(--ink);
+  }
+  .brand-text { line-height: 1.1; }
+  .brand-text .t1 { font-family: 'Reem Kufi Fun', sans-serif; font-weight: 700; font-size: 16px; }
+  .brand-text .t2 { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; margin-top: 2px; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: 15px; position: relative; }
+  .nav-links a:hover { color: var(--red); }
+  .nav-cta {
+    background: var(--red);
+    color: var(--paper) !important;
+    padding: 10px 18px;
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 700;
+    border: 2px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+  [dir="rtl"] .nav-cta { box-shadow: -4px 4px 0 var(--ink); }
+  .nav-cta:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+  [dir="rtl"] .nav-cta:hover { transform: translate(-2px, 2px); box-shadow: -2px 2px 0 var(--ink); }
+  .burger { display: none; background: none; border: 2px solid var(--ink); padding: 8px; cursor: pointer; }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    padding: 80px 0 60px;
+    border-bottom: 2px solid var(--ink);
+    overflow: hidden;
+  }
+  .hero-stamp {
+    position: absolute;
+    top: 60px; left: 60px;
+    width: 180px; height: 180px;
+    border: 4px solid var(--red);
+    border-radius: 50%;
+    color: var(--red);
+    display: grid; place-items: center;
+    text-align: center;
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 700;
+    transform: rotate(-15deg);
+    opacity: 0.9;
+    z-index: 3;
+  }
+  .hero-stamp::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 2px dashed var(--red);
+    border-radius: 50%;
+  }
+  .hero-stamp .s1 { font-size: 14px; letter-spacing: 0.1em; }
+  .hero-stamp .s2 { font-size: 32px; line-height: 1; margin: 4px 0; }
+  .hero-stamp .s3 { font-size: 11px; font-family: 'JetBrains Mono', monospace; opacity: 0.8; }
+
+  .hero-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 40px;
+    position: relative; z-index: 2;
+  }
+  .hero-meta .bullet { color: var(--red); }
+
+  .hero h1 {
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 700;
+    font-size: clamp(56px, 11vw, 180px);
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+    position: relative; z-index: 2;
+  }
+  .hero h1 .red { color: var(--red); }
+  .hero h1 .struck { position: relative; display: inline-block; }
+  .hero h1 .struck::after {
+    content: "";
+    position: absolute;
+    top: 52%; left: -4%; right: -4%;
+    height: 8px;
+    background: var(--red);
+    transform: rotate(-2deg);
+  }
+  .hero h1 .underline {
+    background: var(--chalk);
+    padding: 0 12px;
+    box-decoration-break: clone;
+  }
+
+  .hero-sub {
+    max-width: 780px;
+    font-size: clamp(18px, 2.2vw, 24px);
+    line-height: 1.55;
+    font-weight: 400;
+    margin-bottom: 48px;
+    position: relative; z-index: 2;
+  }
+  .hero-sub strong { background: var(--ink); color: var(--paper); padding: 2px 8px; font-weight: 700; }
+
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; position: relative; z-index: 2; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 18px 28px;
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    border: 2px solid var(--ink);
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.1s, box-shadow 0.1s;
+    box-shadow: -6px 6px 0 var(--ink);
+  }
+  .btn-primary { background: var(--red); color: var(--paper); }
+  .btn-secondary { background: var(--paper); color: var(--ink); }
+  .btn-ink { background: var(--ink); color: var(--paper); box-shadow: -6px 6px 0 var(--red); }
+  .btn:hover { transform: translate(-3px, 3px); box-shadow: -3px 3px 0 var(--ink); }
+  .btn-ink:hover { box-shadow: -3px 3px 0 var(--red); }
+  .btn .arrow { font-family: 'JetBrains Mono', monospace; }
+
+  .hero-footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 2px solid var(--ink);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative; z-index: 2;
+  }
+  .hero-stat {
+    padding: 20px 24px;
+    border-left: 1px solid var(--rule);
+  }
+  .hero-stat:first-child { padding-right: 0; }
+  [dir="rtl"] .hero-stat:last-child { border-left: none; }
+  .hero-stat .num {
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--red);
+  }
+  .hero-stat .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 8px;
+    opacity: 0.7;
+  }
+
+  /* ===== NUMBERS SECTION ===== */
+  .numbers {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 100px 0;
+    position: relative;
+    z-index: 2;
+  }
+  .section-label {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .section-label .box {
+    width: 12px; height: 12px; background: var(--red);
+  }
+  .numbers h2 {
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 700;
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: 0.95;
+    margin-bottom: 60px;
+    max-width: 900px;
+  }
+  .numbers h2 .red { color: var(--red); }
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 2px solid var(--paper);
+    border-bottom: 2px solid var(--paper);
+  }
+  .num-card {
+    padding: 48px 32px;
+    border-left: 1px solid rgba(244,239,230,0.2);
+  }
+  [dir="rtl"] .num-card:first-child { padding-right: 0; border-left: 1px solid rgba(244,239,230,0.2); }
+  [dir="rtl"] .num-card:last-child { border-left: none; padding-left: 0; }
+  .num-card .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    opacity: 0.6;
+    margin-bottom: 20px;
+  }
+  .num-card .big {
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 700;
+    font-size: clamp(60px, 8vw, 120px);
+    line-height: 0.9;
+    color: var(--chalk);
+    margin-bottom: 16px;
+  }
+  .num-card .unit { font-size: 0.4em; opacity: 0.8; }
+  .num-card .desc { font-size: 16px; line-height: 1.5; opacity: 0.85; }
+
+  /* ===== DEMANDS ===== */
+  .demands { padding: 100px 0; border-bottom: 2px solid var(--ink); position: relative; z-index: 2; }
+  .demands-head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: 60px; }
+  .demands-head h2 {
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 700;
+    font-size: clamp(44px, 7vw, 96px);
+    line-height: 0.9;
+  }
+  .demands-head p { font-size: 18px; line-height: 1.6; max-width: 480px; }
+
+  .demand-list { border-top: 2px solid var(--ink); }
+  .demand {
+    display: grid;
+    grid-template-columns: 120px 1fr 40px;
+    gap: 32px;
+    padding: 40px 16px;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+    cursor: pointer;
+    transition: background 0.2s, padding 0.2s;
+  }
+  .demand:hover { background: var(--ink); color: var(--paper); padding-right: 32px; padding-left: 32px; }
+  .demand:hover .d-num { color: var(--red); }
+  .demand:hover .d-arrow { color: var(--red); }
+  .d-num {
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 700;
+    font-size: 72px;
+    line-height: 0.9;
+  }
+  .d-body h3 {
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .d-body p { font-size: 17px; line-height: 1.6; opacity: 0.8; max-width: 640px; }
+  .d-arrow { font-family: 'JetBrains Mono', monospace; font-size: 28px; align-self: center; }
+
+  /* ===== PETITION ===== */
+  .petition {
+    background: var(--red);
+    color: var(--paper);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+  }
+  .petition::before {
+    content: "";
+    position: absolute;
+    top: -40px; left: 0; right: 0;
+    height: 40px;
+    background: repeating-linear-gradient(45deg, var(--ink) 0 20px, transparent 20px 40px);
+    opacity: 0.4;
+  }
+  .pet-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .pet-left h2 {
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 700;
+    font-size: clamp(48px, 8vw, 110px);
+    line-height: 0.9;
+    margin-bottom: 32px;
+  }
+  .pet-left h2 .box { background: var(--ink); color: var(--paper); padding: 0 16px; display: inline-block; }
+  .pet-left p { font-size: 19px; line-height: 1.6; margin-bottom: 32px; max-width: 520px; }
+
+  .counter-box {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 32px;
+    border: 3px solid var(--paper);
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .counter-box::before {
+    content: "";
+    position: absolute;
+    inset: -11px;
+    border: 3px solid var(--ink);
+    pointer-events: none;
+  }
+  .counter-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 12px;
+  }
+  .counter-num {
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 700;
+    font-size: clamp(56px, 9vw, 96px);
+    line-height: 1;
+    color: var(--chalk);
+    font-variant-numeric: tabular-nums;
+  }
+  .counter-target {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    margin-top: 12px;
+    opacity: 0.8;
+  }
+  .counter-bar {
+    height: 8px;
+    background: rgba(244,239,230,0.15);
+    margin-top: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .counter-fill {
+    position: absolute;
+    top: 0; right: 0;
+    height: 100%;
+    background: var(--chalk);
+    transition: width 0.6s cubic-bezier(.2,.8,.2,1);
+  }
+
+  .pet-form {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 36px;
+    border: 3px solid var(--ink);
+    box-shadow: -12px 12px 0 var(--ink);
+  }
+  .pet-form h3 {
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+  .pet-form .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0.7;
+  }
+  .field { margin-bottom: 16px; }
+  .field label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    opacity: 0.7;
+  }
+  .field input, .field select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .field input:focus, .field select:focus {
+    outline: none;
+    background: var(--chalk);
+  }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .check-row { display: flex; align-items: flex-start; gap: 10px; margin: 20px 0; font-size: 14px; line-height: 1.5; }
+  .check-row input { width: 18px; height: 18px; margin-top: 3px; flex-shrink: 0; accent-color: var(--red); }
+  .submit-btn {
+    width: 100%;
+    padding: 18px;
+    background: var(--ink);
+    color: var(--paper);
+    border: 2px solid var(--ink);
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .submit-btn:hover { background: var(--red); }
+  .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .success-msg {
+    background: var(--ink);
+    color: var(--chalk);
+    padding: 36px;
+    border: 3px solid var(--chalk);
+    text-align: center;
+  }
+  .success-msg .check {
+    font-size: 56px;
+    color: var(--chalk);
+    font-family: 'Reem Kufi Fun', sans-serif;
+    line-height: 1;
+  }
+  .success-msg h3 { font-family: 'Reem Kufi Fun', sans-serif; font-size: 28px; margin: 12px 0 8px; color: var(--paper); }
+  .success-msg p { font-size: 16px; opacity: 0.85; }
+  .success-msg .num { color: var(--red); font-weight: 700; }
+
+  .recent-signers {
+    margin-top: 32px;
+    background: rgba(14,14,14,0.25);
+    border: 1px solid rgba(244,239,230,0.2);
+    padding: 20px 24px;
+  }
+  .recent-signers .head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    opacity: 0.7;
+    display: flex;
+    justify-content: space-between;
+  }
+  .recent-signers .head .live { display: flex; align-items: center; gap: 6px; }
+  .live-dot { width: 8px; height: 8px; background: var(--chalk); border-radius: 50%; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .signer-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(244,239,230,0.08);
+    font-size: 14px;
+    align-items: center;
+  }
+  .signer-row:last-child { border-bottom: none; }
+  .signer-row .name { font-weight: 500; }
+  .signer-row .city { opacity: 0.7; font-size: 13px; }
+  .signer-row .time { font-family: 'JetBrains Mono', monospace; font-size: 11px; opacity: 0.5; }
+
+  /* ===== PRESS ===== */
+  .press { padding: 100px 0; border-bottom: 2px solid var(--ink); position: relative; z-index: 2; }
+  .press-head { margin-bottom: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; }
+  .press-head h2 {
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 700;
+    font-size: clamp(44px, 7vw, 96px);
+    line-height: 0.9;
+  }
+  .press-head p { font-size: 17px; line-height: 1.6; max-width: 480px; }
+
+  .press-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 24px;
+  }
+  .clip {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    padding: 28px;
+    position: relative;
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
+  .clip::before {
+    content: "";
+    position: absolute;
+    top: -14px; right: 40px;
+    width: 80px; height: 22px;
+    background: var(--chalk);
+    border: 1px solid var(--ink);
+    opacity: 0.85;
+    transform: rotate(-3deg);
+    box-shadow: 2px 2px 0 rgba(14,14,14,0.1);
+  }
+  .clip:nth-child(2)::before { right: auto; left: 30px; transform: rotate(2deg); background: var(--red); }
+  .clip:nth-child(3)::before { right: 50%; transform: rotate(-1deg) translateX(50%); }
+  .clip:nth-child(4)::before { transform: rotate(4deg); background: var(--paper); }
+  .clip:nth-child(5)::before { transform: rotate(-5deg); background: var(--chalk); }
+  .clip:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); }
+  .clip.featured { grid-row: span 2; grid-column: 1; }
+
+  .clip .source {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+  .clip .source .s { color: var(--red); font-weight: 700; }
+  .clip h3 {
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+  .clip.featured h3 { font-size: 38px; line-height: 1.1; }
+  .clip .excerpt { font-size: 15px; line-height: 1.55; opacity: 0.8; margin-bottom: 20px; }
+  .clip.featured .excerpt { font-size: 17px; }
+  .clip .read {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 2px solid var(--red);
+    padding-bottom: 2px;
+    font-weight: 700;
+  }
+  .clip .imgph {
+    height: 180px;
+    background-image: repeating-linear-gradient(45deg, var(--ink) 0 2px, transparent 2px 8px);
+    background-color: var(--chalk);
+    border: 1px solid var(--ink);
+    margin-bottom: 20px;
+    display: grid; place-items: center;
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .clip.featured .imgph { height: 280px; }
+
+  /* ===== JOIN STRIP ===== */
+  .join-strip {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    border-bottom: 2px solid var(--ink);
+  }
+  .join-strip h2 {
+    font-family: 'Reem Kufi Fun', sans-serif;
+    font-weight: 700;
+    font-size: clamp(40px, 7vw, 88px);
+    line-height: 0.95;
+    margin-bottom: 16px;
+  }
+  .join-strip h2 .red { color: var(--red); }
+  .join-strip p { font-size: 18px; opacity: 0.8; max-width: 640px; margin: 0 auto 32px; line-height: 1.6; }
+  .join-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--paper);
+    padding: 60px 0 32px;
+    position: relative; z-index: 2;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .footer-about { max-width: 360px; }
+  .footer-about p { font-size: 14px; line-height: 1.6; opacity: 0.75; margin-top: 12px; }
+  .footer-col h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    opacity: 0.6;
+  }
+  .footer-col a { display: block; color: var(--ink); text-decoration: none; font-size: 15px; margin-bottom: 8px; }
+  .footer-col a:hover { color: var(--red); }
+  .footer-bottom {
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-links.open { display: flex; position: absolute; top: 100%; right: 0; left: 0; background: var(--paper); flex-direction: column; padding: 20px; border-bottom: 2px solid var(--ink); gap: 16px; align-items: flex-start; }
+    .burger { display: block; }
+    .hero-stamp { width: 120px; height: 120px; top: 20px; left: 20px; }
+    .hero-stamp .s2 { font-size: 22px; }
+    .hero-stamp .s1 { font-size: 10px; }
+    .hero-footer { grid-template-columns: repeat(2, 1fr); }
+    .hero-stat { border-left: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .hero-stat:nth-child(2) { border-left: none; }
+    .numbers-grid { grid-template-columns: 1fr; }
+    .num-card { border-left: none; border-bottom: 1px solid rgba(244,239,230,0.2); padding: 36px 0; }
+    [dir="rtl"] .num-card:first-child { border-left: none; }
+    .demands-head, .press-head { grid-template-columns: 1fr; gap: 24px; }
+    .demand { grid-template-columns: 80px 1fr; gap: 20px; }
+    .d-arrow { display: none; }
+    .d-num { font-size: 56px; }
+    .d-body h3 { font-size: 24px; }
+    .pet-grid { grid-template-columns: 1fr; gap: 40px; }
+    .press-grid { grid-template-columns: 1fr; }
+    .clip.featured { grid-row: auto; grid-column: auto; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .footer-about { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 500px) {
+    .field-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; align-items: stretch; }
+    .hero-actions .btn { justify-content: center; }
+  }
+
+  /* ===== UTILITY ===== */
+  .hidden { display: none !important; }
+  :focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot"></span> خبر عاجل : أثمنة البيلياردو تضاعفت في 3 سنوات</span>
+    <span><span class="dot"></span> نطالب بتسعيرة موحّدة 10 دراهم للعبة</span>
+    <span><span class="dot"></span> وقّع العريضة الآن — كلّ توقيع صوت يُسمع</span>
+    <span><span class="dot"></span> انضم للحركة : #خفّضوا_أثمنة_البيلياردو</span>
+    <span><span class="dot"></span> مسيرة وطنية قريبا في الدار البيضاء</span>
+    <span><span class="dot"></span> خبر عاجل : أثمنة البيلياردو تضاعفت في 3 سنوات</span>
+    <span><span class="dot"></span> نطالب بتسعيرة موحّدة 10 دراهم للعبة</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap">
+    <div class="brand">
+      <div class="brand-mark">ن</div>
+      <div class="brand-text">
+        <div class="t1">نقابة لاعبي البيلياردو</div>
+        <div class="t2">MGBP · EST. 2024</div>
+      </div>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#manifesto">البيان</a>
+      <a href="#numbers">الأرقام</a>
+      <a href="#demands">المطالب</a>
+      <a href="#press">الإعلام</a>
+      <a href="#petition" class="nav-cta">وقّع العريضة</a>
+    </div>
+    <button class="burger" id="burger" aria-label="قائمة">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="manifesto">
+  <div class="wrap">
+    <div class="hero-stamp" aria-hidden="true">
+      <div>
+        <div class="s1">مطلب شعبي</div>
+        <div class="s2">خفّضوا</div>
+        <div class="s1">الأثمنة</div>
+        <div class="s3">— 2024 / 2025 —</div>
+      </div>
+    </div>
+
+    <div class="hero-meta">
+      <span><span class="bullet">●</span> بيان رقم ٠١ — المغرب</span>
+      <span>N° 2024 / 001</span>
+    </div>
+
+    <h1>
+      <span class="red">البيلياردو</span><br>
+      ليست <span class="struck">رفاهية</span><br>
+      <span class="underline">للأغنياء.</span>
+    </h1>
+
+    <p class="hero-sub">
+      نحن <strong>نقابة لاعبي البيلياردو بالمغرب</strong>، حركة شعبية مستقلة تُطالب بخفض فوري وعادل لأثمنة اللعب في المقاهي والنوادي. في ثلاث سنوات، ارتفعت الأسعار بأكثر من ضعفين، دون مبرّر، ودون رقابة. كفى.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#petition" class="btn btn-primary">وقّع العريضة الآن <span class="arrow">←</span></a>
+      <a href="#demands" class="btn btn-secondary">اقرأ مطالبنا <span class="arrow">↓</span></a>
+    </div>
+
+    <div class="hero-footer">
+      <div class="hero-stat">
+        <div class="num" id="stat1">0</div>
+        <div class="lbl">توقيع حتى الآن</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">48</div>
+        <div class="lbl">مدينة مشاركة</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">+140%</div>
+        <div class="lbl">ارتفاع الأسعار منذ 2021</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">١٢</div>
+        <div class="lbl">تغطية إعلامية</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers" id="numbers">
+  <div class="wrap">
+    <div class="section-label"><span class="box"></span> الأرقام لا تكذب · الفصل ٠٢</div>
+    <h2>ثلاث أرقام <span class="red">تكفي</span> لفهم المشكلة.</h2>
+    <div class="numbers-grid">
+      <div class="num-card">
+        <div class="tag">[ 01 ] سعر اللعبة الواحدة</div>
+        <div class="big">20<span class="unit"> درهم</span></div>
+        <div class="desc">المعدّل الحالي في أغلب مقاهي المدن الكبرى. في 2021، كان لا يتجاوز 8 دراهم.</div>
+      </div>
+      <div class="num-card">
+        <div class="tag">[ 02 ] جلسة أسبوعية</div>
+        <div class="big">160<span class="unit"> درهم</span></div>
+        <div class="desc">ما يدفعه لاعب عادي أسبوعيا — أي ما يعادل اشتراك جيم شهري كامل.</div>
+      </div>
+      <div class="num-card">
+        <div class="tag">[ 03 ] نسبة الزيادة</div>
+        <div class="big">%140</div>
+        <div class="desc">ارتفاع الأسعار في ظرف 3 سنوات فقط، دون أي تحسين في الخدمة أو جودة الطاولات.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMANDS -->
+<section class="demands" id="demands">
+  <div class="wrap">
+    <div class="section-label"><span class="box"></span> ما نريده · الفصل ٠٣</div>
+    <div class="demands-head">
+      <h2>أربعة مطالب <br>غير قابلة للتفاوض.</h2>
+      <p>هذه ليست أمنيات، بل حقوق. نوجّه مطالبنا إلى أصحاب المقاهي، إلى النوادي الخاصة، وإلى السلطات المختصة. نطلب استجابة رسمية قبل نهاية السنة.</p>
+    </div>
+
+    <div class="demand-list">
+      <div class="demand">
+        <div class="d-num">٠١</div>
+        <div class="d-body">
+          <h3>تسعيرة موحّدة وعادلة</h3>
+          <p>نطالب بسقف أقصى 10 دراهم للّعبة الواحدة في المقاهي العادية، و15 درهم في النوادي المتخصّصة ذات التجهيز العالي — مع إلزام عرض التسعيرة بشكل واضح.</p>
+        </div>
+        <div class="d-arrow">←</div>
+      </div>
+      <div class="demand">
+        <div class="d-num">٠٢</div>
+        <div class="d-body">
+          <h3>شفافية في التسعير</h3>
+          <p>كل مقهى أو نادي يجب أن يُعلن السعر كتابيا عند المدخل وعلى كل طاولة. لا مفاجآت، لا تسعير مزاجي، لا تمييز بين الزبائن.</p>
+        </div>
+        <div class="d-arrow">←</div>
+      </div>
+      <div class="demand">
+        <div class="d-num">٠٣</div>
+        <div class="d-body">
+          <h3>فضاءات شعبية بأسعار رمزية</h3>
+          <p>تخصيص قاعات بلدية وفضاءات شبابية فيها طاولات بيلياردو بأسعار رمزية (3-5 دراهم) للشباب والطلبة ومحدودي الدخل في كل مدينة.</p>
+        </div>
+        <div class="d-arrow">←</div>
+      </div>
+      <div class="demand">
+        <div class="d-num">٠٤</div>
+        <div class="d-body">
+          <h3>جودة مقابل السعر</h3>
+          <p>ارتفاع السعر يجب أن يقابله ارتفاع في الجودة : طاولات مُعاد فرشها، كرات في حالة جيدة، عصي مضبوطة، إضاءة لائقة. ندفع — إذن نستحقّ.</p>
+        </div>
+        <div class="d-arrow">←</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PETITION -->
+<section class="petition" id="petition">
+  <div class="wrap">
+    <div class="pet-grid">
+      <div class="pet-left">
+        <div class="section-label"><span class="box" style="background:var(--chalk)"></span> العريضة الوطنية · الفصل ٠٤</div>
+        <h2>صوتك <span class="box">سلاحك.</span></h2>
+        <p>كل توقيع هو ضغط مباشر على أصحاب المقاهي والسلطات. نحن لا نطلب معروفا — نطالب بحقّنا في الترفيه الشعبي بثمن عادل. انضم إلينا.</p>
+
+        <div class="counter-box">
+          <div class="counter-label">العدّاد المباشر للتوقيعات</div>
+          <div class="counter-num" id="counterNum">0</div>
+          <div class="counter-target">الهدف : ٥٠٬٠٠٠ توقيع قبل نهاية 2026</div>
+          <div class="counter-bar"><div class="counter-fill" id="counterFill" style="width: 0%"></div></div>
+        </div>
+
+        <div class="recent-signers">
+          <div class="head">
+            <span>آخر التوقيعات</span>
+            <span class="live"><span class="live-dot"></span> مباشر</span>
+          </div>
+          <div id="signerList"></div>
+        </div>
+      </div>
+
+      <div class="pet-right">
+        <form class="pet-form" id="petForm">
+          <h3>وقّع العريضة</h3>
+          <div class="sub">// مطلوب · التوقيع علني</div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>الاسم الكامل *</label>
+              <input type="text" name="name" required placeholder="محمد العلوي">
+            </div>
+            <div class="field">
+              <label>المدينة *</label>
+              <input type="text" name="city" required placeholder="الدار البيضاء">
+            </div>
+          </div>
+
+          <div class="field">
+            <label>البريد الإلكتروني (اختياري)</label>
+            <input type="email" name="email" placeholder="you@example.ma">
+          </div>
+
+          <div class="field">
+            <label>كم تدفع عادة للّعبة الواحدة ؟</label>
+            <select name="price">
+              <option value="">اختر...</option>
+              <option>أقل من 10 دراهم</option>
+              <option>10 — 15 درهم</option>
+              <option>15 — 25 درهم</option>
+              <option>أكثر من 25 درهم</option>
+            </select>
+          </div>
+
+          <div class="check-row">
+            <input type="checkbox" id="consent" required>
+            <label for="consent">أوافق على نشر اسمي ضمن قائمة الموقّعين على العريضة، وأدعم مطالب النقابة بخفض أثمنة البيلياردو في المغرب.</label>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">أضف توقيعي ←</button>
+        </form>
+
+        <div class="success-msg hidden" id="successMsg">
+          <div class="check">✓</div>
+          <h3>تمّ تسجيل توقيعك.</h3>
+          <p>شكرا، أنت الآن الموقّع رقم <span class="num" id="yourNum">—</span> في العريضة.</p>
+          <p style="margin-top:12px;">شاركها مع 3 أصدقاء على الأقل. الصوت يتضاعف.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS -->
+<section class="press" id="press">
+  <div class="wrap">
+    <div class="section-label"><span class="box"></span> تحدّث عنّا · الفصل ٠٥</div>
+    <div class="press-head">
+      <h2>تغطية إعلامية <br>وصدى شعبي.</h2>
+      <p>حركتنا لم تعد محلية. منذ انطلاقها، تحدّثت عنها الصحافة الورقية والإلكترونية والإذاعات الجهوية. هذه مختارات من التغطية.</p>
+    </div>
+
+    <div class="press-grid">
+      <article class="clip featured">
+        <div class="source"><span class="s">هسبريس</span> <span>12 مارس 2026</span></div>
+        <div class="imgph">[ صورة اعتصام الرباط — ٠١ ]</div>
+        <h3>لاعبو البيلياردو في المغرب يرفعون الصوت : "الأسعار خانقة وغير مبرّرة"</h3>
+        <p class="excerpt">في وقفة احتجاجية أمام ولاية الرباط، رفع العشرات من لاعبي البيلياردو لافتات تطالب بتدخّل السلطات لتأطير الأسعار المتصاعدة. وقال ممثّل النقابة إن الظاهرة أصبحت تُقصي شريحة واسعة من الشباب عن هوايتهم المفضّلة.</p>
+        <a href="#" class="read">اقرأ المقال كاملا ←</a>
+      </article>
+
+      <article class="clip">
+        <div class="source"><span class="s">الأخبار</span> <span>05 فبراير</span></div>
+        <h3>نقابة جديدة تدافع عن جيوب هوّاة البيلياردو</h3>
+        <p class="excerpt">تنظيم شعبي يخرج إلى الواجهة بمطالب واضحة وتحرّك ميداني في 12 مدينة.</p>
+        <a href="#" class="read">اقرأ ←</a>
+      </article>
+
+      <article class="clip">
+        <div class="source"><span class="s">Le Matin</span> <span>22 جانفي</span></div>
+        <h3>Billard : le prix de la partie fait débat</h3>
+        <p class="excerpt">Un collectif marocain dénonce une hausse injustifiée des tarifs dans les cafés et clubs.</p>
+        <a href="#" class="read">LIRE ←</a>
+      </article>
+
+      <article class="clip">
+        <div class="source"><span class="s">ميدي ١ راديو</span> <span>بودكاست</span></div>
+        <h3>مقابلة : "لا نحارب أصحاب المقاهي، بل نحارب الجشع"</h3>
+        <p class="excerpt">حلقة خاصة مع منسّق النقابة، تستعرض البدايات، المطالب، والرد على التهم.</p>
+        <a href="#" class="read">استمع ←</a>
+      </article>
+
+      <article class="clip">
+        <div class="source"><span class="s">Yabiladi</span> <span>18 أبريل</span></div>
+        <h3>Quand le billard devient un luxe au Maroc</h3>
+        <p class="excerpt">Enquête sur les prix pratiqués à Casablanca, Marrakech et Tanger — des écarts qui choquent.</p>
+        <a href="#" class="read">LIRE ←</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN STRIP -->
+<section class="join-strip">
+  <div class="wrap">
+    <h2>الحركة <span class="red">تبدأ</span> بك.</h2>
+    <p>انضم إلى شبكة المتطوعين، نظّم وقفة في مدينتك، أو ساهم بشهادتك. كل مجهود يُحتسب.</p>
+    <div class="join-actions">
+      <a href="#petition" class="btn btn-primary">وقّع العريضة</a>
+      <a href="#" class="btn btn-ink">تطوّع معنا <span class="arrow">✊</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <div class="brand">
+          <div class="brand-mark">ن</div>
+          <div class="brand-text">
+            <div class="t1">نقابة لاعبي البيلياردو</div>
+            <div class="t2">MGBP · EST. 2024</div>
+          </div>
+        </div>
+        <p>حركة شعبية مستقلة، غير ربحية، تدافع عن حق المغاربة في ترفيه شعبي بثمن عادل. لا ننتمي لأي حزب، ولا نتلقى تمويلا من أي جهة.</p>
+      </div>
+      <div class="footer-col">
+        <h4>الموقع</h4>
+        <a href="#manifesto">البيان</a>
+        <a href="#demands">المطالب</a>
+        <a href="#petition">العريضة</a>
+        <a href="#press">الإعلام</a>
+      </div>
+      <div class="footer-col">
+        <h4>انضم</h4>
+        <a href="#">تطوّع</a>
+        <a href="#">نظّم وقفة</a>
+        <a href="#">اشهد</a>
+        <a href="#">اتصل بنا</a>
+      </div>
+      <div class="footer-col">
+        <h4>تابعنا</h4>
+        <a href="#">فيسبوك ↗</a>
+        <a href="#">إنستغرام ↗</a>
+        <a href="#">تيك توك ↗</a>
+        <a href="#">يوتيوب ↗</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 نقابة لاعبي البيلياردو بالمغرب — كل الحقوق محفوظة</span>
+      <span>#خفّضوا_أثمنة_البيلياردو</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== BURGER =====
+  document.getElementById('burger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  // ===== COUNTER + SIGNERS STATE =====
+  const TARGET = 50000;
+  const LS_SIGNED = 'mgbp_has_signed';
+
+  const seedNames = [
+    { name: 'يوسف بنجلون', city: 'الدار البيضاء', mins: 2 },
+    { name: 'فاطمة الزهراء', city: 'الرباط', mins: 4 },
+    { name: 'أمين الطاهري', city: 'فاس', mins: 7 },
+    { name: 'خديجة بناني', city: 'مراكش', mins: 11 },
+    { name: 'رشيد ڭديرة', city: 'طنجة', mins: 13 },
+    { name: 'سلمى الإدريسي', city: 'أكادير', mins: 16 },
+    { name: 'عبد الله حميدي', city: 'وجدة', mins: 21 },
+    { name: 'نادية الفاسي', city: 'تطوان', mins: 28 },
+  ];
+
+  // ===== API HELPERS =====
+  async function apiGetCount() {
+    try {
+      const r = await fetch('/api/count');
+      if (!r.ok) throw new Error();
+      return (await r.json()).count;
+    } catch { return 24736; }
+  }
+
+  async function apiGetSigners() {
+    try {
+      const r = await fetch('/api/signers');
+      if (!r.ok) throw new Error();
+      const data = await r.json();
+      return data.signers.length ? data.signers : seedNames;
+    } catch { return seedNames; }
+  }
+
+  async function apiSign(name, city, email, price) {
+    const r = await fetch('/api/sign', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, city, email, price }),
+    });
+    if (!r.ok) throw new Error('Server error');
+    return (await r.json()).count;
+  }
+
+  // ===== ANIMATED COUNTER =====
+  function animateCount(el, target, duration = 1400) {
+    const start = performance.now();
+    const initial = parseInt((el.textContent || '0').replace(/\D/g, ''), 10) || 0;
+    function tick(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const val = Math.floor(initial + (target - initial) * eased);
+      el.textContent = val.toLocaleString('ar-MA');
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function updateCounterUI(count) {
+    const num = document.getElementById('counterNum');
+    const stat = document.getElementById('stat1');
+    const fill = document.getElementById('counterFill');
+    animateCount(num, count);
+    animateCount(stat, count);
+    const pct = Math.min((count / TARGET) * 100, 100);
+    fill.style.width = pct + '%';
+  }
+
+  function timeAgo(mins) {
+    if (mins < 1) return 'الآن';
+    if (mins < 60) return 'قبل ' + mins + ' د';
+    const h = Math.floor(mins / 60);
+    if (h < 24) return 'قبل ' + h + ' س';
+    return 'قبل ' + Math.floor(h / 24) + ' ي';
+  }
+
+  function renderSigners() {
+    const list = (window._signers || seedNames).slice(0, 6);
+    const el = document.getElementById('signerList');
+    el.innerHTML = list.map(s => `
+      <div class="signer-row">
+        <span class="name">${s.name}</span>
+        <span class="city">${s.city}</span>
+        <span class="time">${timeAgo(s.mins)}</span>
+      </div>
+    `).join('');
+  }
+
+  // ===== INIT =====
+  let count = 24736;
+
+  async function init() {
+    count = await apiGetCount();
+    updateCounterUI(count);
+    const signers = await apiGetSigners();
+    signers.forEach(s => { s._loaded = true; });
+    window._signers = signers;
+    renderSigners();
+
+    if (localStorage.getItem(LS_SIGNED) === '1') {
+      document.getElementById('yourNum').textContent = count.toLocaleString('ar-MA');
+      document.getElementById('petForm').classList.add('hidden');
+      document.getElementById('successMsg').classList.remove('hidden');
+    }
+  }
+  init();
+
+  // Refresh count from server every 15s for live feel
+  setInterval(async () => {
+    count = await apiGetCount();
+    updateCounterUI(count);
+  }, 15000);
+
+  // ===== PETITION FORM =====
+  const form = document.getElementById('petForm');
+  const success = document.getElementById('successMsg');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const name = (data.get('name') || '').toString().trim();
+    const city = (data.get('city') || '').toString().trim();
+    const email = (data.get('email') || '').toString().trim();
+    const price = (data.get('price') || '').toString().trim();
+    if (!name || !city) return;
+
+    submitBtn.disabled = true;
+    try {
+      count = await apiSign(name, city, email, price);
+    } catch {
+      count += 1;
+    }
+
+    updateCounterUI(count);
+    const freshSigners = await apiGetSigners();
+    window._signers = freshSigners;
+    renderSigners();
+
+    document.getElementById('yourNum').textContent = count.toLocaleString('ar-MA');
+    form.classList.add('hidden');
+    success.classList.remove('hidden');
+    localStorage.setItem(LS_SIGNED, '1');
+  });
+
+  // ===== DEMAND HOVER - smooth reveal =====
+  document.querySelectorAll('.demand').forEach(d => {
+    d.addEventListener('click', () => {
+      // placeholder - could expand details
+    });
+  });
+
+  // ===== TWEAKS =====
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "accentColor": "#CC2B2B",
+    "paperColor": "#F4EFE6",
+    "inkColor": "#0E0E0E",
+    "chalkColor": "#F5D547",
+    "showStamp": true,
+    "showTicker": true,
+    "showNoise": true,
+    "heroStyle": "manifesto"
+  }/*EDITMODE-END*/;
+
+  let tweaks = { ...TWEAK_DEFAULTS };
+
+  function applyTweaks() {
+    const r = document.documentElement.style;
+    r.setProperty('--red', tweaks.accentColor);
+    r.setProperty('--paper', tweaks.paperColor);
+    r.setProperty('--ink', tweaks.inkColor);
+    r.setProperty('--chalk', tweaks.chalkColor);
+    document.querySelector('.hero-stamp').style.display = tweaks.showStamp ? 'grid' : 'none';
+    document.querySelector('.ticker').style.display = tweaks.showTicker ? 'block' : 'none';
+    document.body.style.setProperty('--noise-display', tweaks.showNoise ? 'block' : 'none');
+    // toggle noise
+    const styleId = 'noise-off-style';
+    let s = document.getElementById(styleId);
+    if (!s) { s = document.createElement('style'); s.id = styleId; document.head.appendChild(s); }
+    s.textContent = tweaks.showNoise ? '' : 'body::before { display: none !important; }';
+  }
+  applyTweaks();
+
+  // Listen to edit mode from host
+  window.addEventListener('message', (e) => {
+    if (!e.data || !e.data.type) return;
+    if (e.data.type === '__activate_edit_mode') showTweaks();
+    if (e.data.type === '__deactivate_edit_mode') hideTweaks();
+  });
+
+  function showTweaks() {
+    let panel = document.getElementById('tweaksPanel');
+    if (!panel) panel = buildTweaksPanel();
+    panel.style.display = 'block';
+  }
+  function hideTweaks() {
+    const panel = document.getElementById('tweaksPanel');
+    if (panel) panel.style.display = 'none';
+  }
+
+  function buildTweaksPanel() {
+    const panel = document.createElement('div');
+    panel.id = 'tweaksPanel';
+    panel.dir = 'ltr';
+    panel.style.cssText = `
+      position: fixed; bottom: 20px; left: 20px;
+      width: 280px; background: #0E0E0E; color: #F4EFE6;
+      border: 2px solid #F4EFE6; box-shadow: 6px 6px 0 ${tweaks.accentColor};
+      padding: 20px; z-index: 9999; font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; display: block;
+    `;
+    panel.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <strong style="font-family:'Reem Kufi Fun',sans-serif;font-size:16px;">Tweaks</strong>
+        <button id="closeTweaks" style="background:none;border:1px solid #F4EFE6;color:#F4EFE6;cursor:pointer;padding:2px 8px;">×</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <label>Accent (Red)<input type="color" value="${tweaks.accentColor}" data-key="accentColor" style="width:100%;height:32px;margin-top:4px;"></label>
+        <label>Paper<input type="color" value="${tweaks.paperColor}" data-key="paperColor" style="width:100%;height:32px;margin-top:4px;"></label>
+        <label>Ink<input type="color" value="${tweaks.inkColor}" data-key="inkColor" style="width:100%;height:32px;margin-top:4px;"></label>
+        <label>Chalk<input type="color" value="${tweaks.chalkColor}" data-key="chalkColor" style="width:100%;height:32px;margin-top:4px;"></label>
+        <label><input type="checkbox" data-key="showStamp" ${tweaks.showStamp?'checked':''}> Show protest stamp</label>
+        <label><input type="checkbox" data-key="showTicker" ${tweaks.showTicker?'checked':''}> Show ticker</label>
+        <label><input type="checkbox" data-key="showNoise" ${tweaks.showNoise?'checked':''}> Paper noise texture</label>
+      </div>
+    `;
+    document.body.appendChild(panel);
+    panel.querySelector('#closeTweaks').addEventListener('click', () => {
+      hideTweaks();
+      window.parent.postMessage({type:'__edit_mode_dismissed'},'*');
+    });
+    panel.querySelectorAll('[data-key]').forEach(inp => {
+      inp.addEventListener('input', () => {
+        const k = inp.dataset.key;
+        const v = inp.type === 'checkbox' ? inp.checked : inp.value;
+        tweaks[k] = v;
+        applyTweaks();
+        window.parent.postMessage({type:'__edit_mode_set_keys', edits:{[k]: v}}, '*');
+      });
+    });
+    return panel;
+  }
+
+  window.parent.postMessage({type:'__edit_mode_available'}, '*');
+</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+node_modules/
+petition.db
+.env
+.env.local
+.netlify/
