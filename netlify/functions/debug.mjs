@@ -1,24 +1,42 @@
 import { getStore } from "@netlify/blobs";
 
+const SITE_ID = "91f24b1a-b28c-4106-8605-bf377711565d";
+
 export const handler = async () => {
   const info = {
     hasContext: !!process.env.NETLIFY_BLOBS_CONTEXT,
-    siteId: process.env.SITE_ID || process.env.NETLIFY_SITE_ID || "not set",
-    netlifyEnvVars: Object.keys(process.env).filter(k => k.startsWith("NETLIFY")),
+    hasFunctionsToken: !!process.env.NETLIFY_FUNCTIONS_TOKEN,
+    hasAuthToken: !!process.env.NETLIFY_AUTH_TOKEN,
   };
 
+  // Test with NETLIFY_FUNCTIONS_TOKEN
   try {
-    const store = getStore("petition");
-    info.getStoreOk = true;
-    try {
-      const state = await store.get("state", { type: "json" });
-      info.storeGetOk = true;
-      info.stateExists = !!state;
-    } catch (e) {
-      info.storeGetError = e.message;
-    }
+    const store = getStore({
+      name: "petition",
+      siteID: SITE_ID,
+      token: process.env.NETLIFY_FUNCTIONS_TOKEN,
+    });
+    await store.get("state", { type: "json" });
+    info.functionsTokenWorks = true;
   } catch (e) {
-    info.getStoreError = e.message;
+    info.functionsTokenError = e.message;
+  }
+
+  // Test with NETLIFY_AUTH_TOKEN (personal access token)
+  if (process.env.NETLIFY_AUTH_TOKEN) {
+    try {
+      const store = getStore({
+        name: "petition",
+        siteID: SITE_ID,
+        token: process.env.NETLIFY_AUTH_TOKEN,
+      });
+      await store.get("state", { type: "json" });
+      info.authTokenWorks = true;
+    } catch (e) {
+      info.authTokenError = e.message;
+    }
+  } else {
+    info.authTokenError = "NETLIFY_AUTH_TOKEN env var not set";
   }
 
   return {
