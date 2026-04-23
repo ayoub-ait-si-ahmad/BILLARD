@@ -1,8 +1,14 @@
 import { getStore } from "@netlify/blobs";
 
+const SITE_ID = "91f24b1a-b28c-4106-8605-bf377711565d";
+
 export const handler = async () => {
   try {
-    const store = getStore("petition");
+    const store = getStore({
+      name: "petition",
+      siteID: SITE_ID,
+      token: process.env.NETLIFY_FUNCTIONS_TOKEN,
+    });
     const state = await store.get("state", { type: "json" });
     const signers = state ? state.signers : [];
 
@@ -19,7 +25,6 @@ export const handler = async () => {
       body: JSON.stringify({ signers: result }),
     };
   } catch (err) {
-    console.error("signers error:", err.message);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: err.message }),

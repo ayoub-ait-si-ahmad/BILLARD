@@ -1,6 +1,7 @@
 import { getStore } from "@netlify/blobs";
 
 const BASE_COUNT = 24736;
+const SITE_ID = "91f24b1a-b28c-4106-8605-bf377711565d";
 
 export const handler = async (event) => {
   if (event.httpMethod === "OPTIONS") {
@@ -32,7 +33,12 @@ export const handler = async (event) => {
   }
 
   try {
-    const store = getStore("petition");
+    const store = getStore({
+      name: "petition",
+      siteID: SITE_ID,
+      token: process.env.NETLIFY_FUNCTIONS_TOKEN,
+    });
+
     const state = (await store.get("state", { type: "json" })) || {
       count: BASE_COUNT,
       signers: [],
@@ -56,7 +62,6 @@ export const handler = async (event) => {
       body: JSON.stringify({ count: state.count }),
     };
   } catch (err) {
-    console.error("sign error:", err.message);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: err.message }),
