@@ -2,16 +2,21 @@ import { getStore } from "@netlify/blobs";
 
 const BASE_COUNT = 24736;
 
-export default async () => {
+export const handler = async () => {
   try {
     const store = getStore("petition");
     const state = await store.get("state", { type: "json" });
     const count = state ? state.count : BASE_COUNT;
-    return Response.json({ count });
+    return {
+      statusCode: 200,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ count }),
+    };
   } catch (err) {
     console.error("count error:", err.message);
-    return Response.json({ error: err.message }, { status: 500 });
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: err.message }),
+    };
   }
 };
-
-export const config = { path: "/api/count" };

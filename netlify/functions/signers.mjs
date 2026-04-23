@@ -1,6 +1,6 @@
 import { getStore } from "@netlify/blobs";
 
-export default async () => {
+export const handler = async () => {
   try {
     const store = getStore("petition");
     const state = await store.get("state", { type: "json" });
@@ -13,11 +13,16 @@ export default async () => {
       mins: Math.floor((now - s.signed_at) / 60),
     }));
 
-    return Response.json({ signers: result });
+    return {
+      statusCode: 200,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ signers: result }),
+    };
   } catch (err) {
     console.error("signers error:", err.message);
-    return Response.json({ error: err.message }, { status: 500 });
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: err.message }),
+    };
   }
 };
-
-export const config = { path: "/api/signers" };

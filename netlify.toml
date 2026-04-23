@@ -3,3 +3,18 @@
 
 [functions]
   node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/api/count"
+  to = "/.netlify/functions/count"
+  status = 200
+
+[[redirects]]
+  from = "/api/signers"
+  to = "/.netlify/functions/signers"
+  status = 200
+
+[[redirects]]
+  from = "/api/sign"
+  to = "/.netlify/functions/sign"
+  status = 200

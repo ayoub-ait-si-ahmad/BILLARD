@@ -2,32 +2,33 @@ import { getStore } from "@netlify/blobs";
 
 const BASE_COUNT = 24736;
 
-export default async (req) => {
-  if (req.method === "OPTIONS") {
-    return new Response(null, {
-      status: 204,
+export const handler = async (event) => {
+  if (event.httpMethod === "OPTIONS") {
+    return {
+      statusCode: 204,
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "POST, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type",
       },
-    });
+      body: "",
+    };
   }
 
-  if (req.method !== "POST") {
-    return Response.json({ error: "Method not allowed" }, { status: 405 });
+  if (event.httpMethod !== "POST") {
+    return { statusCode: 405, body: JSON.stringify({ error: "Method not allowed" }) };
   }
 
   let body;
   try {
-    body = await req.json();
+    body = JSON.parse(event.body || "{}");
   } catch {
-    return Response.json({ error: "Invalid JSON" }, { status: 400 });
+    return { statusCode: 400, body: JSON.stringify({ error: "Invalid JSON" }) };
   }
 
-  const { name, city, email, price } = body || {};
+  const { name, city, email, price } = body;
   if (!name || !city) {
-    return Response.json({ error: "name and city are required" }, { status: 400 });
+    return { statusCode: 400, body: JSON.stringify({ error: "name and city are required" }) };
   }
 
   try {
@@ -49,11 +50,16 @@ export default async (req) => {
 
     await store.set("state", JSON.stringify(state));
 
-    return Response.json({ count: state.count });
+    return {
+      statusCode: 200,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ count: state.count }),
+    };
   } catch (err) {
     console.error("sign error:", err.message);
-    return Response.json({ error: err.message }, { status: 500 });
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: err.message }),
+    };
   }
 };
-
-export const config = { path: "/api/sign" };
